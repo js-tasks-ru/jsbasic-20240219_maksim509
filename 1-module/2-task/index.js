@@ -6,19 +6,24 @@ function print(text) {
 }
 
 /**
- * Эту функцию нужно поменять так,
+ * Измените эту функцию так,
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
-  // ваш код...
+ const regex = /^[^\s]+$/; // Проверка на отсутствие пробелов
+
+  return regex.test(name) && typeof name === "string" && name.length >= 4 && name !== null;
 }
 
+
 function sayHello() {
-  let userName = prompt('Введите ваше имя');
+  let userName = prompt("Введите ваше имя");
 
   if (isValid(userName)) {
     print(`Welcome back, ${userName}!`);
   } else {
-    print('Некорректное имя');
+    print("Некорректное имя");
   }
 }
+
+sayHello();
