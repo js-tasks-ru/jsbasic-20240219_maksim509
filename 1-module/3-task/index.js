@@ -5,3 +5,4 @@ function ucFirst(str) {
 console.log(ucFirst("вася"));
 console.log(ucFirst("в"));
 console.log(ucFirst(""));
+

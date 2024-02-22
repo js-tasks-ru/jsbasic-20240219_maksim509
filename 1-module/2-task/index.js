@@ -10,9 +10,11 @@ function print(text) {
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
- const regex = /^[^\s]+$/; // Проверка на отсутствие пробелов
+//  const regex = /^[^\s]+$/; // Проверка на отсутствие пробелов
 
-  return regex.test(name) && typeof name === "string" && name.length >= 4 && name !== null;
+//   return regex.test(name) && typeof name === "string" && name.length >= 4 && name !== null;
+
+return !!name && !name.includes(" ") && name.length >= 4;
 }
 
 

@@ -6,4 +6,4 @@ function factorial(n) {
   }
   return index;
 }
-console.log(factorial(5));
+factorial(5);
