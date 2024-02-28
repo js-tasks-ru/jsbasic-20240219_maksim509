@@ -19,6 +19,7 @@ function print(text) {
  */
 function isValid(name) {
   // ваш код...
+
 }
 
 /**
