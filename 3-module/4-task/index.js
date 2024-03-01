@@ -29,9 +29,9 @@ let user1 = {
 
 function showSalary(users, age) {
   // ваш код...
-   let filteredUsers = users.filter((user) => user.age <= age);
-   let result = filteredUsers.map((user) => `${user.name}, ${user.balance}`);
-   return result.join("\n");
+  let filteredUsers = users.filter((user) => user.age <= age);
+  let result = filteredUsers.map((user) => `${user.name}, ${user.balance}`);
+  return result.join("\n");
 }
 
-console.log(showSalary(users, 32));
+showSalary(users, 32);
