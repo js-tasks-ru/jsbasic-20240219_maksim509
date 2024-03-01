@@ -10,3 +10,4 @@ function namify(users) {
 }
 
 let names = namify(users);
+console.log(names);
