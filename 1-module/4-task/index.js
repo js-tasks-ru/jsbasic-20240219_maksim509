@@ -4,6 +4,6 @@ function checkSpam(str) {
   return changedRegister.includes("1xbet") || changedRegister.includes("xxxxx");
 }
 
-checkSpam("1XbeT now");
-checkSpam("free xxxxx");
-checkSpam("innocent rabbit");
+console.log(checkSpam("1XbeT now"));
+console.log(checkSpam("free xxxxx"));
+console.log(checkSpam("innocent rabbit"));
