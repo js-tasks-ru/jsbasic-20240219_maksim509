@@ -17,8 +17,9 @@ function highlight(table) {
     }
 
     // Проставляем атрибут hidden, если атрибута data-available нет вообще
+
     if (!statusCell) {
-      row.setAttribute("hidden", true);
+      row.hidden = true;
     }
 
     // Проставляем класс male/female в зависимости от содержимого ячейки Gender
