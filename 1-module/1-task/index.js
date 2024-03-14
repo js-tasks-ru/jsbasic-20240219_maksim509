@@ -1,13 +1,7 @@
 function factorial(n) {
-  let result = 1;
-
+  let index = 1;
   for (let i = 2; i <= n; i++) {
-    result = result * i;
-    console.log(
-      `Зашли в цикл,i = ${i}. Умножаем i на возрастающий при каждой итерации result`
-    );
+    index = index * i;
   }
-  return result;
+  return index;
 }
-let result = factorial(5);
-console.log(`Факториал равен ${result}`);
