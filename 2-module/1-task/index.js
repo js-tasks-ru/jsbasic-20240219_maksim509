@@ -9,7 +9,7 @@ let salaries = {
 
 function sumSalary(salaries) {
   // ваш код...
-  if (salaries !== null && typeof salaries === "object") {
+  if (salaries !== null && typeof salaries == "object") {
     let sum = 0;
     for (let key in salaries) {
       if (typeof salaries[key] === "number" && isFinite(salaries[key])) {
