@@ -1,4 +1,4 @@
-describe('5-module-3-task', () => {
+describe("5-module-3-task", () => {
   let carouselWrapper;
   let carouselInner;
   let carouselArrowRight;
@@ -7,9 +7,9 @@ describe('5-module-3-task', () => {
   let clickEvent;
 
   beforeEach(() => {
-    carouselWrapper = document.createElement('div');
-    carouselWrapper.setAttribute('data-carousel-holder', '');
-    carouselWrapper.classList.add('container');
+    carouselWrapper = document.createElement("div");
+    carouselWrapper.setAttribute("data-carousel-holder", "");
+    carouselWrapper.classList.add("container");
     carouselWrapper.innerHTML = `
       <div class="carousel">
           <div class="carousel__arrow carousel__arrow_right">
@@ -69,25 +69,27 @@ describe('5-module-3-task', () => {
 
     document.body.append(carouselWrapper);
 
-    let slideWidth = '500px';
-    carouselInner = carouselWrapper.querySelector('.carousel__inner');
+    let slideWidth = "500px";
+    carouselInner = carouselWrapper.querySelector(".carousel__inner");
     carouselInner.style.width = slideWidth;
 
-    let slides = carouselWrapper.querySelectorAll('.carousel__slide');
+    let slides = carouselWrapper.querySelectorAll(".carousel__slide");
 
     slides.forEach((slide) => {
       slide.style.width = slideWidth;
-      let img = slide.querySelector('.carousel__img');
+      let img = slide.querySelector(".carousel__img");
 
       if (img) {
         img.style.width = slideWidth;
       }
     });
 
-    carouselArrowRight = carouselWrapper.querySelector('.carousel__arrow_right');
-    carouselArrowLeft = carouselWrapper.querySelector('.carousel__arrow_left');
+    carouselArrowRight = carouselWrapper.querySelector(
+      ".carousel__arrow_right"
+    );
+    carouselArrowLeft = carouselWrapper.querySelector(".carousel__arrow_left");
 
-    clickEvent = new MouseEvent('click', { bubbles: true });
+    clickEvent = new MouseEvent("click", { bubbles: true });
 
     initCarousel();
   });
@@ -96,8 +98,7 @@ describe('5-module-3-task', () => {
     carouselWrapper.remove(carouselWrapper);
   });
 
-
-  describe('переключение вперёд', () => {
+  describe("переключение вперёд", () => {
     it('при клике по кнопке "вперёд", должна переключать на один слайд вперёд', () => {
       carouselArrowRight.dispatchEvent(clickEvent);
 
@@ -105,7 +106,7 @@ describe('5-module-3-task', () => {
     });
   });
 
-  describe('переключение назад', () => {
+  describe("переключение назад", () => {
     beforeEach(() => {
       carouselArrowRight.dispatchEvent(clickEvent);
       carouselArrowRight.dispatchEvent(clickEvent);
@@ -115,22 +116,21 @@ describe('5-module-3-task', () => {
     it('при клике по кнопке "назад", должна переключать на один слайд назад', () => {
       carouselArrowLeft.dispatchEvent(clickEvent);
 
-      expect(carouselInner.style.transform).toBe('translateX(-1000px)');
+      expect(carouselInner.style.transform).toBe("translateX(-1000px)");
     });
   });
 
-  describe('скрытие стрелок переключения', () => {
-    it('должна по умолчанию скрыть стрелку переключения назад', () => {
-      expect(carouselArrowLeft.style.display).toBe('none');
+  describe("скрытие стрелок переключения", () => {
+    it("должна по умолчанию скрыть стрелку переключения назад", () => {
+      expect(carouselArrowLeft.style.display).toBe("none");
     });
 
-    it('при достижении четвёртого слайда, должна скрыть стрелку переключения вперёд', () => {
+    it("при достижении четвёртого слайда, должна скрыть стрелку переключения вперёд", () => {
       carouselArrowRight.dispatchEvent(clickEvent);
       carouselArrowRight.dispatchEvent(clickEvent);
       carouselArrowRight.dispatchEvent(clickEvent);
 
-      expect(carouselArrowRight.style.display).toBe('none');
+      expect(carouselArrowRight.style.display).toBe("none");
     });
   });
-
 });
