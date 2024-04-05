@@ -10,17 +10,19 @@ import createElement from "../../assets/lib/create-element.js";
 export default class Modal {
   constructor() {
     this.render();
-    this.handleCloseClick = this.handleCloseClick.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+
+    this.elem.addEventListener("click", (event) => this.onClick(event));
   }
 
   render() {
-    this.modal = createElement(`
+    this.elem = createElement(`
       <div class="modal">
         <div class="modal__overlay"></div>
         <div class="modal__inner">
           <div class="modal__header">
-            <button class="modal__close" data-dismiss="modal">&times;</button>
+            <button type="button" class="modal__close">
+              <img src="/assets/images/icons/cross-icon.svg" alt="close-icon" />
+            </button>
             <h3 class="modal__title"></h3>
           </div>
           <div class="modal__body"></div>
@@ -29,42 +31,48 @@ export default class Modal {
     `);
   }
 
+  sub(ref) {
+    return this.elem.querySelector(`.modal__${ref}`);
+  }
+
   open() {
-    document.body.appendChild(this.modal);
+    document.body.append(this.elem);
     document.body.classList.add("is-modal-open");
-    document.addEventListener("keydown", this.handleKeyDown);
-    const closeButton = this.modal.querySelector(".modal__close");
-    closeButton.addEventListener("click", this.handleCloseClick);
+
+    this._keydownEventListener = (event) => this.onDocumentKeyDown(event);
+    document.addEventListener("keydown", this._keydownEventListener);
+
+    if (this.elem.querySelector("[autofocus]")) {
+      this.elem.querySelector("[autofocus]").focus();
+    }
+  }
+
+  onClick(event) {
+    if (event.target.closest(".modal__close")) {
+      event.preventDefault();
+      this.close();
+    }
+  }
+
+  onDocumentKeyDown(event) {
+    if (event.code === "Escape") {
+      event.preventDefault();
+      this.close();
+    }
   }
 
   setTitle(title) {
-    const titleElement = this.modal.querySelector(".modal__title");
-    titleElement.textContent = title;
+    this.sub("title").textContent = title;
   }
 
   setBody(node) {
-    const bodyElement = this.modal.querySelector(".modal__body");
-    bodyElement.innerHTML = "";
-    bodyElement.appendChild(node);
+    this.sub("body").innerHTML = "";
+    this.sub("body").append(node);
   }
 
   close() {
-    if (this.modal && this.modal.parentNode === document.body) {
-      document.body.removeChild(this.modal);
-      document.body.classList.remove("is-modal-open");
-      document.removeEventListener("keydown", this.handleKeyDown);
-      const closeButton = this.modal.querySelector(".modal__close");
-      closeButton.removeEventListener("click", this.handleCloseClick);
-    }
-  }
-
-  handleCloseClick() {
-    this.close();
-  }
-
-  handleKeyDown(event) {
-    if (event.code === "Escape") {
-      this.close();
-    }
+    document.removeEventListener("keydown", this._keydownEventListener);
+    document.body.classList.remove("is-modal-open");
+    this.elem.remove();
   }
 }
