@@ -48,7 +48,3 @@ function initCarousel() {
 
   updateArrowsVisibility();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  setTimeout(initCarousel, 100); // Задержка в 100 миллисекунд
-});
